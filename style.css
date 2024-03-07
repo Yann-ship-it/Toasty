@@ -1,0 +1,147 @@
+:root {
+    --succes: #0abf30;
+    --succes-transparent: #0abf3055;
+    --warning: #df851d;
+    --warning-transparent: #df851d55;
+    --info: #375fce;
+    --info-transparent: #375fce55;
+    --error: #da4a4a;
+    --error-transparent: #da4a4a55;
+}
+
+* {
+    font-family: "Roboto", sans-serif;
+    color: white;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(24, 23, 23);
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    button {
+        color: black;
+    }
+}
+
+.notif {
+    position: fixed;
+    width: 400px;
+    top: 20px;
+    right: 20px;
+    .succes {
+        background: linear-gradient(to right, var(--succes-transparent), #22242f 30%);
+        i {
+            color: var(--succes);
+        }
+        &::before {
+            background-color: var(--succes);
+            box-shadow: 0 0 10px var(--succes);
+        }
+    }
+    .warning {
+        background: linear-gradient(to right, var(--warning-transparent), #22242f 30%);
+        i {
+            color: var(--warning);
+        }
+        &::before {
+            background-color: var(--warning);
+            box-shadow: 0 0 10px var(--warning);
+        }
+    }
+    .info {
+        background: linear-gradient(to right, var(--info-transparent), #22242f 30%);
+        i {
+            color: var(--info);
+        }
+        &::before {
+            background-color: var(--info);
+            box-shadow: 0 0 10px var(--info);
+        }
+    }
+    .error {
+        background: linear-gradient(to right, var(--error-transparent), #22242f 30%);
+        i {
+            color: var(--error);
+        }
+        &::before {
+            background-color: var(--error);
+            box-shadow: 0 0 10px var(--error);
+        }
+    }
+    .toast {
+        display: grid;
+        padding: 15px;
+        grid-template-columns: 70px 1fr 70px;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        align-items: center;
+        justify-content: center;
+        animation: show 0.5s ease 1 forwards;
+        i {
+            font-size: 25px;
+            display: flex;
+            justify-content: center;
+        }
+        .close {
+            cursor: pointer;
+            transition: 0.5s;
+            &:hover {
+                transition: 0.5s;
+                opacity: 0.5;
+            }
+        }
+        &::before {
+            content: "";
+            
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            
+            animation: translateFade 5s linear 1 forwards;
+        }
+    }
+}
+
+@keyframes translateFade{
+    to {
+        width: 0;
+    }
+}
+
+@keyframes show {
+    0% {
+        transform: translateX(100%);
+    }
+    40% {
+        transform: translateX(-5%);
+    }
+    80% {
+        transform: translateX(0%);
+    }
+    100%{
+        transform: translateX(-10%);
+    }
+}
+
+@keyframes hide {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(150%);
+    }
+}
+
+.hide {
+    animation: hide 0.5s ease-in-out forwards;
+}
